@@ -1,7 +1,28 @@
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const userInputs = {
+    username: username,
+    password: password,
+  };
+
+  const handleLogin = async () => {
+    try {
+      const res = await axios.post("/api/v1/auth/login", userInputs);
+      console.log(res);
+    } catch (err) {
+      setError(err);
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex h-screen w-full items-center justify-center bg-orange-300">
       <div className="login-form">
@@ -15,15 +36,26 @@ const Login = () => {
               name="username"
               type="text"
               placeholder="username"
+              value={username}
+              onChange={(e) => {
+                setUsername(e.target.value);
+              }}
             />
             <input
               className="border-b border-black p-2 text-xs focus:outline-none"
               name="password"
               type="text"
               placeholder="password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
             />
           </div>
-          <button className="py-2 px-5 bg-orange-500 text-white rounded-md shadow-sm hover:bg-orange-400 w-full focus:outline-none">
+          <button
+            onClick={handleLogin}
+            className="py-2 px-5 bg-orange-500 text-white rounded-md shadow-sm hover:bg-orange-400 w-full focus:outline-none"
+          >
             Login
           </button>
           <div className="flex flex-col mt-4 items-center justify-center">
