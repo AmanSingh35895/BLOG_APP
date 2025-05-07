@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
@@ -7,6 +7,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const userInputs = {
     username: username,
@@ -14,12 +15,15 @@ const Register = () => {
     password: password,
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      const response = await axios.post("/api/v1/auth/register", userInputs);
-      console.log(response.data);
+      const res = await axios.post("/api/v1/auth/register", userInputs);
+      console.log(res);
+      navigate("/login");
+      alert(`${res.data}`);
     } catch (err) {
-      setError(err);
+      setError(err.response.data);
       console.log(error);
     }
   };
@@ -70,6 +74,15 @@ const Register = () => {
           >
             Register
           </button>
+          {error ? (
+            <div>
+              <p className="text-sm text-red-700">{error}</p>
+            </div>
+          ) : (
+            <div>
+              <p></p>
+            </div>
+          )}
           <div className="flex flex-col mt-4 items-center justify-center">
             <span className="text-xs">Do you have an account?</span>
             <Link to="/login">
