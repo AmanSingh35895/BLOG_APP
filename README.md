@@ -10,6 +10,23 @@ blog-app-1/
 └── server/          # Node.js backend
 ```
 
+## Tech Stack
+
+### Frontend
+
+- React.js with Vite
+- React Router for navigation
+- Tailwind CSS for styling
+- Axios for API calls
+- Context API for state management
+
+### Backend
+
+- Node.js & Express.js
+- MySQL for database
+- JWT for authentication
+- bcrypt for password hashing
+
 ## Prerequisites
 
 - Node.js (v16 or higher)
@@ -65,9 +82,28 @@ npm run dev
 
 Client will run on http://localhost:5173
 
+Note: The frontend is configured to proxy API requests to the backend server at http://localhost:8800
+
 ## Features
 
-- User authentication
-- Blog post creation and management
-- Responsive design
-- Category-based post filtering
+### Authentication
+
+- User registration with username, email, and password
+- Secure login with JWT tokens
+- Cookie-based authentication
+- Logout functionality
+
+### Blog Posts
+
+- View all blog posts on homepage
+- Posts display with title, description, and image
+- Category-based navigation
+- Responsive post layout
+
+### UI Features
+
+- Responsive design with Tailwind CSS
+- Clean and modern interface
+- Category navigation in header
+- Protected routes for authenticated users
+- Write post button for creating new content

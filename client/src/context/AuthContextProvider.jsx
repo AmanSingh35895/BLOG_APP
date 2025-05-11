@@ -1,12 +1,17 @@
 import axios from "axios";
-import { createContext, useEffect, useState } from "react";
-
-export const AuthContext = createContext();
+import { useEffect, useState } from "react";
+import { AuthContext } from "./AuthContext";
 
 export const AuthContextProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(
-    JSON.parse(localStorage.getItem("user")),
-  );
+  const [currentUser, setCurrentUser] = useState(() => {
+    try {
+      const storedUser = localStorage.getItem("user");
+      return storedUser ? JSON.parse(storedUser) : null;
+    } catch (err) {
+      console.error("Failed to parse user from localStorage:", err);
+      return null;
+    }
+  });
 
   const login = async (inputs) => {
     try {
