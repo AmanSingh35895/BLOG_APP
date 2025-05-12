@@ -23,22 +23,22 @@ const Header = () => {
         <Link to="/">Logo</Link>
       </div>
       <div className="links flex gap-4 items-center">
-        <Link>
+        <Link to="/?cat=art">
           <h6 className="shadow-lg">Art</h6>
         </Link>
-        <Link>
+        <Link to="/?cat=science">
           <h6 className="shadow-lg">Science</h6>
         </Link>
-        <Link>
+        <Link to="/?cat=tech">
           <h6 className="shadow-lg">Technology</h6>
         </Link>
-        <Link>
+        <Link to="/>cat=cinema">
           <h6 className="shadow-lg">Cinema</h6>
         </Link>
-        <Link>
+        <Link to="/?cat=design">
           <h6 className="shadow-lg">Design</h6>
         </Link>
-        <Link>
+        <Link to="/?cat=food">
           <h6 className="shadow-lg">Food</h6>
         </Link>
         <div className="flex font-medium gap-5 ml-8 items-center">
